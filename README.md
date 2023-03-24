@@ -127,3 +127,8 @@ kubectl apply -f apache2.yaml
 # Minecraft Server
 ![image](https://user-images.githubusercontent.com/73076854/227536682-5d95ec18-0885-4aa4-8e08-d9f05336864b.png)
 
+# Credits
+
+https://github.com/rickklaasboer/Onepage-Minecraft-Website
+
+https://github.com/itzg/docker-minecraft-server
