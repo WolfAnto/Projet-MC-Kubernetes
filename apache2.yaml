@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server-minecraft
+  labels:
+    app: web-server-minecraft
+spec:
+  selector:
+    matchLabels:
+      app: web-server-minecraft
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: web-server-minecraft
+    spec:
+      containers:
+      - name: web-server-minecraft
+        image: ubuntu:20.04
+        command: ["/bin/sh", "-c", "apt update -y && apt install -y apache2 && apt install -y git && git clone https://github.com/WolfAnto/MC-Website-LP-A2SR && rm -R /var/www/html/* && cp -R MC-Website-LP-A2SR/* /var/www/html/ &&service apache2 start && tail -f /dev/null"]
+        ports:
+        - name: http
+          containerPort: 80
+        env:
+        - name: DEBIAN_FRONTEND
+          value: noninteractive
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server-minecraft
+spec:
+  selector:
+    app: web-server-minecraft
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
+    # nodePort: 30001
