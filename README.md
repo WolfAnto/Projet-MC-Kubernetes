@@ -122,7 +122,7 @@ Le fichier de configuration du déploiement est utilisé pour décrire comment u
 - ports : la liste des ports à exposer sur le conteneur.
 - env : la liste des variables d'environnement à définir pour le conteneur.
 
-Dans ce fichier de configuration, nous avons utilisé l'image Docker itzg/minecraft-server, qui est un serveur Minecraft prêt à l'emploi. Nous avons également défini une variable d'environnement EULA sur TRUE, ce qui indique que nous acceptons les termes du contrat de licence utilisateur final de Minecraft. Enfin, nous avons défini la taille de la mémoire à allouer pour le serveur Minecraft sur 2G.
+Dans ce fichier de configuration, nous avons utilisé l'image Docker itzg/minecraft-server, qui est un serveur Minecraft prêt à l'emploi. Nous avons également défini une variable d'environnement EULA sur TRUE, ce qui indique que nous acceptons les termes du contrat de licence utilisateur final de Minecraft. Ensuite, nous avons défini le MOTD du serveur afin d'avoir un titre et une description qui apparait lorsqu'on ajoute notre serveur dans la liste des serveurs Minecraft. Enfin, nous avons défini la taille de la mémoire à allouer pour le serveur Minecraft sur 2G.
 
 - Fichier de configuration du service Minecraft :
 
