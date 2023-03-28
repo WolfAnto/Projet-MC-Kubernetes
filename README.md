@@ -138,36 +138,39 @@ https://github.com/itzg/docker-minecraft-server
 Explication en détail des fichiers de configuration pour le projet consistant à déployer un cluster de jeux multijoueurs sur Kubernetes.
 
 - Fichier de configuration du déploiement :
+
 Le fichier de configuration du déploiement est utilisé pour décrire comment un ensemble de conteneurs doit être déployé dans un cluster de Kubernetes. Dans ce fichier YAML, nous avons spécifié les détails suivants :
 
-apiVersion : la version de l'API Kubernetes utilisée pour ce déploiement.
-kind : le type de ressource Kubernetes, qui dans ce cas est un Deployment.
-metadata : des métadonnées supplémentaires pour le déploiement, telles que le nom du déploiement.
-spec : la spécification du déploiement, qui comprend :
-selector : les étiquettes à utiliser pour sélectionner les pods gérés par ce déploiement.
-replicas : le nombre de réplicas à créer pour les pods gérés par ce déploiement.
-template : la définition d'un pod, qui comprend :
-metadata : des métadonnées supplémentaires pour le pod, telles que les étiquettes.
-spec : la spécification du pod, qui comprend :
-containers : la liste des conteneurs à exécuter dans le pod.
-name : le nom du conteneur.
-image : l'image Docker à utiliser pour le conteneur.
-ports : la liste des ports à exposer sur le conteneur.
-env : la liste des variables d'environnement à définir pour le conteneur.
+- apiVersion : la version de l'API Kubernetes utilisée pour ce déploiement.
+- kind : le type de ressource Kubernetes, qui dans ce cas est un Deployment.
+- metadata : des métadonnées supplémentaires pour le déploiement, telles que le nom du déploiement.
+- spec : la spécification du déploiement, qui comprend :
+- selector : les étiquettes à utiliser pour sélectionner les pods gérés par ce déploiement.
+- replicas : le nombre de réplicas à créer pour les pods gérés par ce déploiement.
+- template : la définition d'un pod, qui comprend :
+- metadata : des métadonnées supplémentaires pour le pod, telles que les étiquettes.
+- spec : la spécification du pod, qui comprend :
+- containers : la liste des conteneurs à exécuter dans le pod.
+- name : le nom du conteneur.
+- image : l'image Docker à utiliser pour le conteneur.
+- ports : la liste des ports à exposer sur le conteneur.
+- env : la liste des variables d'environnement à définir pour le conteneur.
+
 Dans ce fichier de configuration, nous avons utilisé l'image Docker itzg/minecraft-server, qui est un serveur Minecraft prêt à l'emploi. Nous avons également défini une variable d'environnement EULA sur TRUE, ce qui indique que nous acceptons les termes du contrat de licence utilisateur final de Minecraft. Enfin, nous avons défini la taille de la mémoire à allouer pour le serveur Minecraft sur 2G.
 
 - Fichier de configuration du service :
+
 Le fichier de configuration du service est utilisé pour exposer un ensemble de pods en tant que service dans un cluster de Kubernetes. Dans ce fichier YAML, nous avons spécifié les détails suivants :
 
-apiVersion : la version de l'API Kubernetes utilisée pour ce service.
-kind : le type de ressource Kubernetes, qui dans ce cas est un Service.
-metadata : des métadonnées supplémentaires pour le service, telles que le nom du service.
-spec : la spécification du service, qui comprend :
-selector : les étiquettes à utiliser pour sélectionner les pods à exposer en tant que service.
-ports : la liste des ports à exposer sur le service.
-name : le nom du port.
-port : le numéro de port à utiliser pour le service.
-targetPort : le numéro de port à utiliser pour les pods sélectionnés.
-type : le type de service à créer. Dans ce cas, nous avons choisi LoadBalancer, ce qui permettra de créer une adresse IP externe pour accéder au serveur Minecraft.
+- apiVersion : la version de l'API Kubernetes utilisée pour ce service.
+- kind : le type de ressource Kubernetes, qui dans ce cas est un Service.
+- metadata : des métadonnées supplémentaires pour le service, telles que le nom du service.
+- spec : la spécification du service, qui comprend :
+- selector : les étiquettes à utiliser pour sélectionner les pods à exposer en tant que service.
+- ports : la liste des ports à exposer sur le service.
+- name : le nom du port.
+- port : le numéro de port à utiliser pour le service.
+- targetPort : le numéro de port à utiliser pour les pods sélectionnés.
+- type : le type de service à créer. Dans ce cas, nous avons choisi LoadBalancer, ce qui permettra de créer une adresse IP externe pour accéder au serveur Minecraft.
 
 En résumé, les trois fichiers de configuration sont utilisés pour déployer un serveur Minecraft dans un cluster Kubernetes, exposer le serveur en tant que service et le rendre accessible à l'extérieur du cluster via une adresse IP publique et une URL personnalisée.
