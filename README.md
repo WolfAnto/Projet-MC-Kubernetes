@@ -69,40 +69,6 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.......
 ```
 ![image](https://user-images.githubusercontent.com/73076854/220912911-b6f6ac53-3357-4135-95f0-aa55e4f50253.png)
 
-## Insérer le token générer dans le navigateur (Méthode Kubeconfig) :
-```powershell
-$TOKEN="eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9......."
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
-kubectl config set-credentials docker-desktop --token="${TOKEN}"
-```
-![image](https://user-images.githubusercontent.com/73076854/220913036-9dfd663e-aa06-477f-addf-edc9b8fab474.png)
-
-## Insérer le token générer dans le navigateur (Méthode 2 Kubeconfig) :
-Editer le fichier de config dans C:\Users\Username\.kube\config
-Chercher les lignes :
-```yaml
-[…]
-- name: docker-desktop
-  user:
-    client-certificate-data: LS0tLS1CRUdJTiBDRV…
-[…]
-```
-Ajouter la ligne suivante :
-```yaml
-[…]
-- name: docker-desktop
-  user:
-    client-certificate-data: LS0tLS1CRUdJTiBDRV…
-    token: eyJhbGciOiJSUzI1NiIs…
-[…]
-```
-
-## (BONUS) Pour supprimer ServiceAccount et ClusterRoleBinding :
-```powershell
-kubectl -n kubernetes-dashboard delete serviceaccount admin-user
-kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user
-```
-
 ## Voici l’aperçu de l’interface Kubernetes Dashboard
 ![image](https://user-images.githubusercontent.com/73076854/220913354-aae580d0-e615-46fc-9ffb-0b4fc4dc4b0c.png)
 
