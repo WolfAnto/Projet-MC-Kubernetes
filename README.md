@@ -137,7 +137,7 @@ https://github.com/itzg/docker-minecraft-server
 
 Explication en détail des fichiers de configuration pour le projet consistant à déployer un cluster de jeux multijoueurs sur Kubernetes.
 
-- Fichier de configuration du déploiement :
+- Fichier de configuration du déploiement Minecraft :
 
 Le fichier de configuration du déploiement est utilisé pour décrire comment un ensemble de conteneurs doit être déployé dans un cluster de Kubernetes. Dans ce fichier YAML, nous avons spécifié les détails suivants :
 
@@ -158,7 +158,7 @@ Le fichier de configuration du déploiement est utilisé pour décrire comment u
 
 Dans ce fichier de configuration, nous avons utilisé l'image Docker itzg/minecraft-server, qui est un serveur Minecraft prêt à l'emploi. Nous avons également défini une variable d'environnement EULA sur TRUE, ce qui indique que nous acceptons les termes du contrat de licence utilisateur final de Minecraft. Enfin, nous avons défini la taille de la mémoire à allouer pour le serveur Minecraft sur 2G.
 
-- Fichier de configuration du service :
+- Fichier de configuration du service Minecraft :
 
 Le fichier de configuration du service est utilisé pour exposer un ensemble de pods en tant que service dans un cluster de Kubernetes. Dans ce fichier YAML, nous avons spécifié les détails suivants :
 
@@ -173,4 +173,4 @@ Le fichier de configuration du service est utilisé pour exposer un ensemble de 
 - targetPort : le numéro de port à utiliser pour les pods sélectionnés.
 - type : le type de service à créer. Dans ce cas, nous avons choisi LoadBalancer, ce qui permettra de créer une adresse IP externe pour accéder au serveur Minecraft.
 
-En résumé, les trois fichiers de configuration sont utilisés pour déployer un serveur Minecraft dans un cluster Kubernetes, exposer le serveur en tant que service et le rendre accessible à l'extérieur du cluster via une adresse IP publique et une URL personnalisée.
+En résumé, les 2 fichiers de configuration sont utilisés pour déployer un serveur Minecraft dans un cluster Kubernetes, exposer le serveur en tant que service et le rendre accessible à l'extérieur du cluster via une adresse IP publique et une URL personnalisée.
