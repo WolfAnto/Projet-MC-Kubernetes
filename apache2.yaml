@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: web-server-minecraft
-  replicas: 1 # tells deployment to run 2 pods matching the template
+  replicas: 1 # nombre initial de pods
   template:
     metadata:
       labels:
@@ -24,6 +24,18 @@ spec:
         env:
         - name: DEBIAN_FRONTEND
           value: noninteractive
+    # Ajout de la spécification d'évolutivité
+    autoscaling:
+      # nombre minimum de pods à exécuter
+      minReplicas: 1
+      # nombre maximum de pods à exécuter
+      maxReplicas: 5
+      # définition des règles pour ajuster le nombre de pods en fonction de la demande
+      metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          targetAverageUtilization: 50
 ---
 apiVersion: v1
 kind: Service
@@ -37,4 +49,3 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: http
-    # nodePort: 30001
