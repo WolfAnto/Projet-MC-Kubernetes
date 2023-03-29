@@ -164,6 +164,10 @@ Le fichier de configuration Apache2 est un déploiement d'un serveur web Apache 
 
 Dans ce fichier de configuration, nous avons défini un déploiement qui va créer un pod exécutant un conteneur appelé web-server-minecraft. Le conteneur utilise une image Ubuntu 20.04 et exécute une commande pour mettre à jour les paquets du système, installer Apache2 et Git, cloner un dépôt Github contenant une page web à déployer, copier les fichiers de la page web dans le répertoire /var/www/html utilisé par Apache, démarrer le service Apache, et enfin lancer une commande pour garder le conteneur actif. Le conteneur expose également le port 80 pour recevoir les connexions HTTP entrantes.
 
+Nous avons aussi ajouté la spécification d'évolutivité avec la section 'autoscaling'. Nous avons défini le nombre minimum de pods à exécuter sur 1 et le nombre maximum sur 5. Nous avons également ajouté une règle pour ajuster automatiquement le nombre de pods en fonction de l'utilisation de la ressource CPU, en fixant la cible d'utilisation moyenne à 50%.
+
+Avec cette configuration, Kubernetes ajustera automatiquement le nombre de pods en fonction de la demande de trafic entrant. Lorsque l'utilisation de la ressource CPU dépasse la cible de 50%, Kubernetes créera un nouveau pod. Si l'utilisation de la ressource CPU diminue en dessous de la cible de 50%, Kubernetes supprimera un pod. De cette manière, votre serveur web Apache sera capable de s'adapter dynamiquement à la charge de travail.
+
 Nous avons également défini un service pour le déploiement, qui sélectionne les pods ayant l'étiquette app: web-server-minecraft, expose le port 80 et utilise le type LoadBalancer pour rendre le service accessible à l'extérieur du cluster Kubernetes. Cela permettra aux utilisateurs d'accéder à la page web déployée via l'adresse IP publique du service.
 
 - apiVersion : la version de l'API Kubernetes utilisée pour ce service.
