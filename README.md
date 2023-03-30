@@ -72,6 +72,11 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.......
 ## Voici l’aperçu de l’interface Kubernetes Dashboard
 ![image](https://user-images.githubusercontent.com/73076854/220913354-aae580d0-e615-46fc-9ffb-0b4fc4dc4b0c.png)
 
+## Déployer/Activer les métriques avec le fichier components.yaml
+```bash
+kubectl apply -f components.yaml
+```
+
 ## Déployer le fichier minecraft.yaml
 ```bash
 kubectl apply -f minecraft.yaml
