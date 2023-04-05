@@ -5,20 +5,20 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: hostpath
   capacity:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data"
+    path: "/run/desktop/mnt/host/c/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minecraft-data-claim
 spec:
-  storageClassName: manual
+  storageClassName: hostpath
   accessModes:
     - ReadWriteOnce
   resources:
@@ -59,6 +59,8 @@ spec:
           value: "18"
         - name: MEMORY
           value: "4G"
+        - name: OPS
+          value: "WolfAnto"
         volumeMounts:
           - mountPath: "/data"
             name: minecraft-pv-storage
